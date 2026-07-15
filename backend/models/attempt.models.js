@@ -21,7 +21,7 @@ const AttemptSchema= new mongoose.Schema({
     },
     selfRating:{
         type:String,
-        enum:["got it!","partially Correct","wrong"],
+        enum:["got it!","partially Correct","Missed it"],
         default:null,
     },
     nextReviewDate:{
