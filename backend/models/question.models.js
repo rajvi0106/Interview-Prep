@@ -3,13 +3,13 @@ import mongoose from "mongoose";
 const questionSchema= new mongoose.Schema({
     topic:{
         type:String,
-        requirred:true,
+        required:true,
         enum:['DSA', 'HR', 'System Design', 'CS Fundamentals'],
     },
     difficulty:{
         type:String,
         enum:['Easy', 'Medium', 'Hard'],
-        requirred:true,
+        required:true,
     },
     questionText:{
         type:String,

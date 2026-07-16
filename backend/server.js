@@ -1,11 +1,12 @@
-import express from "express";
 import dotenv from "dotenv";
+dotenv.config();
+import express from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import questionRoutes from "./routes/questionRoutes.js";
+import attemptRoutes from "./routes/attemptRoutes.js";
 
-dotenv.config();
 const app=express();
 
 app.use(express.json());
@@ -15,6 +16,7 @@ connectDB();
 
 app.use("/api/auth",authRoutes)
 app.use("/api/question",questionRoutes);
+app.use('/api/attempts', attemptRoutes);
 app.get("/",(req,res)=>{
     res.json({ message: 'Server is running' });
 })
