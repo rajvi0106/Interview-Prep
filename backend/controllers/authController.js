@@ -2,9 +2,14 @@ import User from '../models/user.models.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-const generateToken = (userId) => {
-  return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
-    expiresIn: '7d'
+const sendTokenCookie = (res, userId) => {
+  const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '7d' });
+
+  res.cookie('token', token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    maxAge: 7 * 24 * 60 * 60 * 1000
   });
 };
 
@@ -24,12 +29,12 @@ export const signup = async (req, res) => {
       email,
       password: hashedPassword
     });
+    sendTokenCookie(res, user._id);
 
     res.status(201).json({
       _id: user._id,
       name: user.name,
       email: user.email,
-      token: generateToken(user._id)
     });
 
   } catch (error) {
@@ -50,15 +55,23 @@ export const login = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
+    sendTokenCookie(res, user._id);
 
     res.json({
       _id: user._id,
       name: user.name,
       email: user.email,
-      token: generateToken(user._id)
     });
 
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+export const logout = (req, res) => {
+  res.cookie('token', '', {
+    httpOnly: true,
+    expires: new Date(0)
+  });
+  res.json({ message: 'Logged out successfully' });
 };
