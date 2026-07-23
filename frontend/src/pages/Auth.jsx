@@ -3,29 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { GraduationCap, Mail, Lock, User, BarChart3, MapPin } from "lucide-react";
 import { useAuth } from "../context/authContext.jsx";
 
-function GoogleIcon() {
-  return (
-    <svg viewBox="0 0 48 48" width="18" height="18">
-      <path
-        fill="#FFC107"
-        d="M43.6 20.5H42V20.4H24v7.2h11.3c-1.6 4.6-6 7.9-11.3 7.9-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.1-5.1C33.6 6.5 29 4.5 24 4.5 13.2 4.5 4.5 13.2 4.5 24S13.2 43.5 24 43.5 43.5 34.8 43.5 24c0-1.2-.1-2.4-.4-3.5z"
-      />
-      <path
-        fill="#FF3D00"
-        d="m6.3 14.7 5.9 4.3C13.8 15.4 18.5 12.5 24 12.5c3.1 0 5.9 1.2 8 3.1l5.1-5.1C33.6 6.5 29 4.5 24 4.5c-7.7 0-14.4 4.4-17.7 10.2z"
-      />
-      <path
-        fill="#4CAF50"
-        d="M24 43.5c4.9 0 9.4-1.9 12.8-4.9l-5.9-5c-2 1.5-4.5 2.4-6.9 2.4-5.3 0-9.7-3.4-11.3-8.1l-5.9 4.6C10 39 16.4 43.5 24 43.5z"
-      />
-      <path
-        fill="#1976D2"
-        d="M43.6 20.5H42V20.4H24v7.2h11.3c-.8 2.3-2.2 4.2-4.1 5.6l5.9 5c-.4.4 6.4-4.6 6.4-14.2 0-1.2-.1-2.4-.4-3.5z"
-      />
-    </svg>
-  );
-}
-
 function Input({ icon: Icon, ...props }) {
   return (
     <div
@@ -166,6 +143,7 @@ export default function Auth() {
                 fontSize: "13px",
                 fontWeight: 600,
                 borderRadius: "0.2rem",
+                cursor:"pointer"
               }}
             >
               Log In
@@ -181,6 +159,7 @@ export default function Auth() {
                 fontSize: "13px",
                 fontWeight: 600,
                 borderRadius: "0.2rem",
+                cursor:"pointer"
               }}
             >
               Sign Up
@@ -249,19 +228,7 @@ export default function Auth() {
                 >
                   Password
                 </label>
-                {isLogin && (
-                  <a
-                    href="#"
-                    style={{
-                      color: "#530f1d",
-                      fontFamily: "Inter",
-                      fontSize: "12px",
-                      fontWeight: 600,
-                    }}
-                  >
-                    Forgot?
-                  </a>
-                )}
+                {isLogin}
               </div>
               <div className="mt-1.5">
                 <Input
@@ -298,6 +265,7 @@ export default function Auth() {
                 fontSize: "14px",
                 fontWeight: 700,
                 borderRadius: "0.25rem",
+                cursor:"pointer"
               }}
             >
               {authLoading
@@ -307,39 +275,6 @@ export default function Auth() {
                 : "Start Your Journey →"}
             </button>
           </form>
-
-          <div className="mt-7 flex items-center gap-3">
-            <div className="flex-1 h-px" style={{ backgroundColor: "#e7e2dc" }} />
-            <span
-              style={{
-                color: "#877273",
-                fontFamily: "Inter",
-                fontSize: "11px",
-                fontWeight: 700,
-                letterSpacing: "0.03em",
-              }}
-            >
-              INSTITUTIONAL LOGIN
-            </span>
-            <div className="flex-1 h-px" style={{ backgroundColor: "#e7e2dc" }} />
-          </div>
-
-          <button
-            type="button"
-            className="mt-5 w-full py-3 flex items-center justify-center gap-2"
-            style={{
-              backgroundColor: "#ffffff",
-              border: "1px solid #d9c1c2",
-              borderRadius: "0.25rem",
-              color: "#1d1b18",
-              fontFamily: "Inter",
-              fontSize: "14px",
-              fontWeight: 500,
-            }}
-          >
-            <GoogleIcon />
-            Continue with Google
-          </button>
 
           <p
             className="mt-6 text-center"
