@@ -75,3 +75,12 @@ export const logout = (req, res) => {
   });
   res.json({ message: 'Logged out successfully' });
 };
+
+export const me=async(req,res)=>{
+  res.json({
+    _id: req.user._id,
+    name: req.user.name,
+    email: req.user.email,
+
+  })
+}
