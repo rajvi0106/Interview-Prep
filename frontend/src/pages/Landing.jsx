@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   GraduationCap,
   Bell,
@@ -55,6 +56,7 @@ function MailIcon(props) {
 }
 
 function Navbar() {
+    const navigate=useNavigate();
   const linkStyle = (active) => ({
     color: active ? "#530f1d" : "#544244",
     fontFamily: "Inter",
@@ -92,6 +94,7 @@ function Navbar() {
           </button>
           <button
             type="button"
+            onClick={() => navigate("/login", { state: { mode: "signup" } })}
             className="px-4 py-2"
             style={{
               backgroundColor: "#530f1d",
@@ -112,6 +115,7 @@ function Navbar() {
 }
 
 function Hero() {
+    const navigate=useNavigate();
   return (
     <section className="max-w-6xl mx-auto px-6 md:px-10 pt-16 pb-24 grid md:grid-cols-2 gap-12 items-center">
       <div>
@@ -165,6 +169,7 @@ function Hero() {
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <button
             type="button"
+            onClick={() => navigate("/login", { state: { mode: "signup" } })}
             className="inline-flex items-center gap-2 px-6 py-3"
             style={{
               backgroundColor: "#530f1d",
@@ -427,6 +432,7 @@ function Lifecycle() {
 }
 
 export default function Landing() {
+ const navigate=useNavigate();
   return (
     <div style={{ backgroundColor: "#fef8f3" }}>
       <Navbar />
@@ -523,6 +529,7 @@ export default function Landing() {
 
           <button
             type="button"
+            onClick={() => navigate("/login", { state: { mode: "signup" } })}
             className="mt-8 px-7 py-3.5 rounded"
             style={{
               backgroundColor: "#ffffff",
